@@ -1,0 +1,9 @@
+config.php
+nbproject*
+.buildpath
+.project
+.settings
+.settings/
+/*.bak
+/*~
+mailoutput*
