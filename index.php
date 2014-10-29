@@ -3,11 +3,6 @@
 /**
  * This provides a user-interface for using the DbDiff class.
  * 	
- * More information on this tool can be found at:
- * http://joefreeman.co.uk/blog/2009/07/php-script-to-compare-mysql-database-schemas/
- * 
- * Copyright (C) 2009, Joe Freeman <joe.freeman@bitroot.com>
- * Available under http://en.wikipedia.org/wiki/MIT_License
  */
 
 error_reporting(E_ALL);
@@ -266,7 +261,6 @@ switch ($action) {
 
 <div id="footer">
 	<p>More information on this tool is available from the corresponding <a href="http://joefreeman.co.uk/blog/2009/07/php-script-to-compare-mysql-database-schemas/">blog post</a>.</p>
-	<p>Copyright &copy; 2009 <a href="mailto:joe.freeman@bitroot.com">Joe Freeman</a>. Code available under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>.</p>
 </div>
 
 </div>
