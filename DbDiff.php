@@ -41,7 +41,7 @@ class DbDiff {
 
 		foreach ($tables as $table_name => $fields) {
 
-			$result = mysql_query("SHOW COLUMNS FROM " . $table_name, $db);
+			$result = mysql_query("SHOW COLUMNS FROM `" . $table_name . "`", $db);
 			while ($row = mysql_fetch_assoc($result)) {
 				$tables[$table_name][$row['Field']] = $row;
 			}
