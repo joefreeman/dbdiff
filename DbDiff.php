@@ -21,33 +21,33 @@ class DbDiff {
 	 * @param string $name Name or description of the database.
 	 * @return mixed|string An array structure of the exported schema, or an error string.
 	 */
-	function export($config, $name) {
+	public static function export($config, $name) {
 
-		$db = @mysql_connect($config['host'], $config['user'],
+		$db = @mysqli_connect($config['host'], $config['user'],
 			$config['password']);
 
 		if (!$db) {
 			return null;
 		}
 
-		if (!mysql_select_db($config['name'], $db)) {
+		if (!mysqli_select_db($db, $config['name'])) {
 			return null;
 		}
 
-		$result = mysql_query("SHOW TABLES");
-		while ($row = mysql_fetch_row($result)) {
+		$result = mysqli_query($db, "SHOW TABLES");
+		while ($row = mysqli_fetch_row($result)) {
 			$tables[$row[0]] = array();
 		}
 
 		foreach ($tables as $table_name => $fields) {
 
-			$result = mysql_query("SHOW COLUMNS FROM `" . $table_name . "`", $db);
-			while ($row = mysql_fetch_assoc($result)) {
+			$result = mysqli_query($db, "SHOW COLUMNS FROM `" . $table_name . "`");
+			while ($row = mysqli_fetch_assoc($result)) {
 				$tables[$table_name][$row['Field']] = $row;
 			}
 		}
 
-		mysql_close();
+		mysqli_close($db);
 
 		$data = array(
 			'name' => $name,
@@ -65,7 +65,7 @@ class DbDiff {
 	 * @param string $schema2 The second database schema.
 	 * @return array The results of the comparison.
 	 */
-	function compare($schema1, $schema2) {
+	public static function compare($schema1, $schema2) {
 
 		$tables1 = array_keys($schema1['tables']);
 		$tables2 = array_keys($schema2['tables']);
